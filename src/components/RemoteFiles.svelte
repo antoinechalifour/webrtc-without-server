@@ -11,6 +11,8 @@
 
 	const cleanUp = guest.onFilesChanged((newFiles) => (files = newFiles));
 
+	const downloadFileOnClick = (file: AvailableFile) => () => guest.request(file.id);
+
 	onDestroy(cleanUp);
 </script>
 
@@ -20,7 +22,7 @@
 		{#each files as file}
 			<li>
 				<AvailableFileItem name={file.name}>
-					<button aria-label="Download file {file.name}">
+					<button aria-label="Download file {file.name}" on:click={downloadFileOnClick(file)}>
 						<GoCloudDownload />
 					</button>
 				</AvailableFileItem>

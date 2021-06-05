@@ -19,7 +19,13 @@ export class GuestWebRTC implements Guest {
 	}
 
 	request(fileId: string): Promise<FileTransfer> {
-		this.dataChannel.send(fileId);
+		this.dataChannel.send(
+			JSON.stringify({
+				type: 'requestfile',
+				fileName: fileId
+			})
+		);
+
 		return Promise.resolve(null as any);
 	}
 
@@ -48,6 +54,9 @@ export class GuestWebRTC implements Guest {
 		switch (message.type) {
 			case 'availablefiles':
 				this.notifyFilesChanged(message.files);
+				break;
+			default:
+				console.log('Unhandled message:', message);
 		}
 	}
 
