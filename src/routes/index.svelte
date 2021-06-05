@@ -13,5 +13,5 @@
 {#if mode === 'offering'}
 	<Offering />
 {:else}
-	<Answering />
+	<Answering offerInvitationToken={searchParams.get('connect')} />
 {/if}

@@ -4,7 +4,7 @@ export const copySessionUrlToClipboard = (sessionDescription: string) => () => {
 	console.log('Link copied: ', url);
 };
 
-export const copySessionDescriptionToClipbaord = (sessionDescription: string) => () => {
+export const copySessionDescriptionToClipboard = (sessionDescription: string) => () => {
 	navigator.clipboard.writeText(sessionDescription);
 	console.log('Session description copied: ', sessionDescription);
 };
