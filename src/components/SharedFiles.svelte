@@ -1,14 +1,16 @@
 <script lang="ts">
 	declare module 'svelte-file-dropzone';
-	import { createEventDispatcher } from 'svelte';
 	import Dropzone from 'svelte-file-dropzone';
 
-	const dispatch = createEventDispatcher();
+	import type { Guest } from '../domain/Guest';
+
+	export let guest: Guest;
 	let files: File[] = [];
 
-	$: dispatch('fileschanged', files);
-
-	const handleFilesSelect = (e: any) => (files = [...files, ...e.detail.acceptedFiles]);
+	const handleFilesSelect = (e: any) => {
+		files = [...files, ...e.detail.acceptedFiles];
+		guest.sync(files.map((file) => ({ id: file.name, name: file.name })));
+	};
 </script>
 
 <h2>Local files</h2>
