@@ -1,13 +1,14 @@
 import type { Offerer } from '../domain/Offerer';
 import type { Guest } from '../domain/Guest';
 import type { InvitationToken } from '../domain/InvitationToken';
+import { isDefined } from '../utils/lib';
 
 import { makeInvitationToken, parseInvitationToken } from './InvitationTokenWebRTC';
 import { GuestWebRTC } from './GuestWebRTC';
 import { webRTCConfiguration } from './WebRTCConfiguration';
-import { isDefined } from '../utils/lib';
+import { PeerWebRTC } from './PeerWebRTC';
 
-export class OffererWebRTC implements Offerer {
+export class OffererWebRTC extends PeerWebRTC implements Offerer {
 	private peerConnection?: RTCPeerConnection;
 	private dataChannel?: RTCDataChannel;
 
@@ -17,7 +18,7 @@ export class OffererWebRTC implements Offerer {
 
 		const iceCandidatesReady = this.collectIceCandidates(this.peerConnection);
 		const offer = await this.peerConnection.createOffer();
-		await this.peerConnection.setLocalDescription(offer); // TODO: check necessary ?
+		await this.peerConnection.setLocalDescription(offer);
 		await iceCandidatesReady;
 
 		return makeInvitationToken(this.peerConnection.localDescription!);
@@ -31,13 +32,5 @@ export class OffererWebRTC implements Offerer {
 		await this.peerConnection.setRemoteDescription(sessionDescription);
 
 		return new GuestWebRTC(this.dataChannel);
-	}
-
-	private collectIceCandidates(peerConnection: RTCPeerConnection) {
-		return new Promise((resolve) => {
-			peerConnection.addEventListener('icecandidate', (e) => {
-				if (!e.candidate) resolve(void 0);
-			});
-		});
 	}
 }
