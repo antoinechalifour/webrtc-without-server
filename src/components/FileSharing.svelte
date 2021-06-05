@@ -6,5 +6,16 @@
 	export let guest: Guest;
 </script>
 
-<SharedFiles {guest} />
-<RemoteFiles {guest} />
+<main>
+	<SharedFiles {guest} />
+	<RemoteFiles {guest} />
+</main>
+
+<style>
+	main {
+		min-height: 100vh;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 1.6rem;
+	}
+</style>

@@ -27,6 +27,8 @@
   },
   "type": "module",
   "dependencies": {
-    "svelte-file-dropzone": "^0.0.15"
+    "reset.css": "^2.0.2",
+    "svelte-file-dropzone": "^0.0.15",
+    "svelte-icons": "^2.1.0"
   }
 }
