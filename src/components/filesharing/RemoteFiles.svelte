@@ -2,7 +2,7 @@
 	import { onDestroy } from 'svelte';
 	import GoCloudDownload from 'svelte-icons/go/GoCloudDownload.svelte';
 
-	import type { AvailableFile, Guest } from '../domain/Guest';
+	import type { AvailableFile, Guest } from '../../domain/Guest';
 	import FileList from './FileList.svelte';
 	import AvailableFileItem from './AvailableFileItem.svelte';
 

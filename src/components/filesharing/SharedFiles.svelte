@@ -3,7 +3,7 @@
 	import Dropzone from 'svelte-file-dropzone';
 	import GoX from 'svelte-icons/go/GoX.svelte';
 
-	import type { AvailableFile, Guest } from '../domain/Guest';
+	import type { AvailableFile, Guest } from '../../domain/Guest';
 
 	import AvailableFileItem from './AvailableFileItem.svelte';
 	import FileList from './FileList.svelte';

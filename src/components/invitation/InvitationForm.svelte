@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	import type { InvitationToken } from '../domain/InvitationToken';
+	import type { InvitationToken } from '../../domain/InvitationToken';
 
-	import PrimaryButton from './PrimaryButton.svelte';
-	import Input from './Input.svelte';
-	import InputToClipboard from './InputToClipboard.svelte';
+	import PrimaryButton from '../ui/PrimaryButton.svelte';
+	import Input from '../ui/Input.svelte';
+	import InputToClipboard from '../ui/InputToClipboard.svelte';
 
 	export let offer: InvitationToken;
 	let answer = '';

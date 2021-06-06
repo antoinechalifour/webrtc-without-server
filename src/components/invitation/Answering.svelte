@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { AnswererWebRTC } from '../infrastructure/AnswererWebRTC';
-	import FileSharing from './FileSharing.svelte';
+	import { AnswererWebRTC } from '../../infrastructure/AnswererWebRTC';
+	import FileSharing from '../filesharing/FileSharing.svelte';
 	import JoiningForm from './JoiningForm.svelte';
 
 	export let offerInvitationToken: string;

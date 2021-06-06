@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Guest } from '../domain/Guest';
-	import { OffererWebRTC } from '../infrastructure/OffererWebRTC';
+	import type { Guest } from '../../domain/Guest';
+	import { OffererWebRTC } from '../../infrastructure/OffererWebRTC';
 
-	import FileSharing from './FileSharing.svelte';
+	import FileSharing from '../filesharing/FileSharing.svelte';
 	import InvitationForm from './InvitationForm.svelte';
 	import HomePage from './HomePage.svelte';
 	import HomePageLoader from './HomePageLoader.svelte';
