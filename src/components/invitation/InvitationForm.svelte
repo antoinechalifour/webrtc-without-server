@@ -6,6 +6,7 @@
 	import PrimaryButton from '../ui/PrimaryButton.svelte';
 	import Input from '../ui/Input.svelte';
 	import InputToClipboard from '../ui/InputToClipboard.svelte';
+	import Steps from './Steps.svelte';
 
 	export let offer: InvitationToken;
 	let answer = '';
@@ -15,7 +16,7 @@
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
-	<ol>
+	<Steps>
 		<li>
 			<p>Step 1</p>
 			<p>Copy and send the following url to your friend.</p>
@@ -42,21 +43,5 @@
 			<p>Step 3</p>
 			<PrimaryButton type="submit" disabled={!answer}>Share files</PrimaryButton>
 		</li>
-	</ol>
+	</Steps>
 </form>
-
-<style>
-	ol {
-		display: grid;
-		grid-gap: 2rem;
-	}
-
-	li {
-		display: grid;
-		grid-gap: 1rem;
-	}
-
-	li > :first-child {
-		font-weight: bold;
-	}
-</style>

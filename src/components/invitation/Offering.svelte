@@ -10,7 +10,7 @@
 	const offerer = new OffererWebRTC();
 	const invitationTokenReady = offerer.invite();
 
-	let guest: Guest | null;
+	let guest: Guest | null = null;
 
 	const handleAnswer = async (e: CustomEvent<string>) => (guest = await offerer.accept(e.detail));
 </script>

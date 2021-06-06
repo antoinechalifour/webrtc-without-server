@@ -3,13 +3,15 @@
 
 	import Input from './Input.svelte';
 
+	const defaultFormatContent = (str: string) => str;
+
 	export let text: string;
-	export let formatContent: (content: string) => string;
+	export let formatContent: (content: string) => string = defaultFormatContent;
 
 	const copyToClipboard = () => navigator.clipboard.writeText(formatContent(text));
 </script>
 
-<div class="input-wrapper">
+<div class="wrapper">
 	<Input type="text" readonly value={text} />
 	<button type="button" aria-label="Copy the url to your clipboard" on:click={copyToClipboard}>
 		<GoClippy />
@@ -17,11 +19,11 @@
 </div>
 
 <style>
-	.input-wrapper {
+	.wrapper {
 		position: relative;
 	}
 
-	.input-wrapper :global(button) {
+	.wrapper :global(button) {
 		position: absolute;
 		box-sizing: border-box;
 		padding: 0.2rem 2rem;
@@ -38,7 +40,7 @@
 		border-left: 2px solid dodgerblue;
 	}
 
-	.input-wrapper input {
-		padding-right: 3.5rem;
+	.wrapper :global(input) {
+		padding-right: 6.5rem;
 	}
 </style>
