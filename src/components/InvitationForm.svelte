@@ -2,7 +2,10 @@
 	import { createEventDispatcher } from 'svelte';
 
 	import type { InvitationToken } from '../domain/InvitationToken';
-	import { copySessionUrlToClipboard } from '../session';
+
+	import PrimaryButton from './PrimaryButton.svelte';
+	import Input from './Input.svelte';
+	import InputToClipboard from './InputToClipboard.svelte';
 
 	export let offer: InvitationToken;
 	let answer = '';
@@ -11,10 +14,49 @@
 	const handleSubmit = () => dispatch('answer', answer);
 </script>
 
-<button on:click={copySessionUrlToClipboard(offer)}>Get my link</button>
 <form on:submit|preventDefault={handleSubmit}>
-	<label for="answer">Paste answer here</label>
-	<textarea id="answer" name="answer" bind:value={answer} />
+	<ol>
+		<li>
+			<p>Step 1</p>
+			<p>Copy and send the following url to your friend.</p>
 
-	<button type="submit">Connect to remote peer</button>
+			<InputToClipboard
+				text={offer}
+				formatContent={(offer) => `${location.origin}/?connect=${offer}`}
+			/>
+		</li>
+
+		<li>
+			<p>Step 2</p>
+			<label for="answer">Paste here the code they will send as a reply</label>
+			<Input
+				type="text"
+				id="answer"
+				name="answer"
+				placeholder="Code goes here"
+				bind:value={answer}
+			/>
+		</li>
+
+		<li>
+			<p>Step 3</p>
+			<PrimaryButton type="submit" disabled={!answer}>Share files</PrimaryButton>
+		</li>
+	</ol>
 </form>
+
+<style>
+	ol {
+		display: grid;
+		grid-gap: 2rem;
+	}
+
+	li {
+		display: grid;
+		grid-gap: 1rem;
+	}
+
+	li > :first-child {
+		font-weight: bold;
+	}
+</style>
